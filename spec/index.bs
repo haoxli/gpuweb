@@ -3002,6 +3002,7 @@ Issue(https://github.com/gpuweb/gpuweb/issues/693): add a limit to the number of
 
 <script type=idl>
 interface GPUCommandBuffer {
+  GPUSize64 getElapsedTime();
 };
 GPUCommandBuffer includes GPUObjectBase;
 </script>
@@ -3013,6 +3014,24 @@ dictionary GPUCommandBufferDescriptor : GPUObjectDescriptorBase {
 };
 </script>
 
+### <dfn method for=GPUCommandBuffer>getElapsedTime()</dfn> ### {#command-buffer-getElapsedTime}
+
+<div algorithm="GPUCommandBuffer.getElapsedTime">
+
+  **Returns:** {{GPUSize64}}
+
+  1. Return the amount of time in nanoseconds GPU takes to fully complete a set of command buffer.
+
+  <div algorithm class=validusage>
+    <dfn abstract-op>getElapsedTime Valid Usage</dfn>
+
+      1. {{GPUExtensionName/timestamp-query}} must be enbaled on the device.
+      1. {{GPUCommandBuffer/getElapsedTime}} must be called after {{GPUQueue/submit(commandBuffers)|GPUQueue.submit()}}, otherwise 0 is returned.
+
+    </dfn>
+  </div>
+
+</div>
 
 # Command Encoding # {#command-encoding}
 
