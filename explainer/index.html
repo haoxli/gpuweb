@@ -1269,7 +1269,7 @@ Possible extra rowspan handling
 	ul.index ul,
 	ul.index dl { font-size: smaller; }
 	@media not print {
-		ul.index li span:not(.dfn-paneled) {
+		ul.index li a + span {
 			white-space: nowrap;
 			color: transparent; }
 		ul.index li a:hover + span,
@@ -1487,9 +1487,9 @@ Possible extra rowspan handling
 		}
 	}
 </style>
-  <meta content="Bikeshed version 4f053d00e, updated Tue Aug 10 14:13:32 2021 -0700" name="generator">
+  <meta content="Bikeshed version 2e3c4c68b, updated Fri Jan 14 14:49:00 2022 -0800" name="generator">
   <link href="https://gpuweb.github.io/gpuweb/explainer/" rel="canonical">
-  <meta content="f43505f04879e4f85fada50d26b8f532eb8257da" name="document-revision">
+  <meta content="1df8ded0119c83b87dfbae42436f4a01c2c54647" name="document-revision">
 <style>/* style-autolinks */
 
 .css.css, .property.property, .descriptor.descriptor {
@@ -1730,6 +1730,16 @@ figcaption:not(.no-marker)::before {
 }
 
 .dfn-paneled { cursor: pointer; }
+</style>
+<style>/* style-issues */
+
+a[href].issue-return {
+    float: right;
+    float: inline-end;
+    color: var(--issueheading-text);
+    font-weight: bold;
+    text-decoration: none;
+}
 </style>
 <style>/* style-md-lists */
 
@@ -2046,7 +2056,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">WebGPU Explainer</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="profile-and-date"><span class="content">Living Standard, <time class="dt-updated" datetime="2021-08-23">23 August 2021</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="profile-and-date"><span class="content">Living Standard, <time class="dt-updated" datetime="2022-02-28">28 February 2022</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -2062,20 +2072,9 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     </dl>
    </div>
    <div data-fill-with="warning"></div>
-   <p class="copyright" data-fill-with="copyright"><a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2021 the Contributors to the WebGPU Explainer Specification, published by the <a href="http://www.w3.org/community/gpu/">GPU for the Web Community Group</a> under the <a href="https://www.w3.org/community/about/agreements/cla/">W3C Community Contributor License Agreement (CLA)</a>.
+   <p class="copyright" data-fill-with="copyright"><a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2022 the Contributors to the WebGPU Explainer Specification, published by the <a href="http://www.w3.org/community/gpu/">GPU for the Web Community Group</a> under the <a href="https://www.w3.org/community/about/agreements/cla/">W3C Community Contributor License Agreement (CLA)</a>.
 A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/">summary</a> is available. </p>
    <hr title="Separator for header">
-  </div>
-  <div data-fill-with="at-risk"></div>
-  <h2 class="no-num no-toc no-ref heading settled" id="status"><span class="content">Status of this document</span></h2>
-  <div data-fill-with="status">
-   This specification was published by the <a href="https://www.w3.org/community/gpu/">GPU for the Web Community Group</a>.
-It is not a W3C Standard nor is it on the W3C Standards Track.
-
-Please note that under the <a href="https://www.w3.org/community/about/agreements/cla/">W3C Community Contributor License Agreement (CLA)</a> there is a limited opt-out and other conditions apply.
-
-Learn more about <a href="http://www.w3.org/community/">W3C Community and Business Groups</a>. 
-   <p></p>
   </div>
   <div data-fill-with="at-risk"></div>
   <nav data-fill-with="table-of-contents" id="toc">
@@ -2212,8 +2211,8 @@ Learn more about <a href="http://www.w3.org/community/">W3C Community and Busine
    </ol>
   </nav>
   <main>
-   <p class="issue" id="issue-30876714"><a class="self-link" href="#issue-30876714"></a> Set up cross-linking into the WebGPU and WGSL specs. <a href="https://github.com/tabatkins/bikeshed/issues/2006">&lt;https://github.com/tabatkins/bikeshed/issues/2006></a></p>
-   <p class="issue" id="issue-c681b067"><a class="self-link" href="#issue-c681b067"></a> Complete the planned sections. <a href="https://github.com/gpuweb/gpuweb/issues/1321">&lt;https://github.com/gpuweb/gpuweb/issues/1321></a></p>
+   <p class="issue" id="issue-30876714"><a class="self-link" href="#issue-30876714"></a> Set up cross-linking into the WebGPU and WGSL specs. <a href="https://github.com/tabatkins/bikeshed/issues/2006">[Issue #tabatkins/bikeshed#2006]</a></p>
+   <p class="issue" id="issue-c681b067"><a class="self-link" href="#issue-c681b067"></a> Complete the planned sections. <a href="https://github.com/gpuweb/gpuweb/issues/1321">[Issue #gpuweb/gpuweb#1321]</a></p>
    <h2 class="heading settled" data-level="1" id="introduction"><span class="secno">1. </span><span class="content">Introduction</span><a class="self-link" href="#introduction"></a></h2>
    <p>WebGPU is a proposed Web API to enable webpages to use the system’s <a href="https://en.wikipedia.org/wiki/Graphics_processing_unit">GPU (Graphics Processing Unit)</a> to perform computations and draw complex images that can be presented inside the page.
 This goal is similar to the <a href="https://www.khronos.org/webgl/">WebGL</a> family of APIs, but WebGPU enables access to more advanced features of GPUs.
@@ -2691,7 +2690,7 @@ This makes it easier for developers to test their app’s behavior in different 
 improves robustness of applications in the wild, and improves portability between browsers.</p>
    <p class="issue" id="issue-a7ca2e8b"><a class="self-link" href="#issue-a7ca2e8b"></a> Finish this explainer (see <a href="https://github.com/gpuweb/gpuweb/blob/main/design/ErrorHandling.md#fatal-errors-requestadapter-requestdevice-and-devicelost">ErrorHandling.md</a>).</p>
    <h3 class="heading settled" data-level="3.5" id="buffer-mapping"><span class="secno">3.5. </span><span class="content">Buffer Mapping</span><a class="self-link" href="#buffer-mapping"></a></h3>
-   <p>A <code>GPUBuffer</code> represents a memory allocations usable by other GPU operations.
+   <p>A <code>GPUBuffer</code> represents a memory allocation usable by other GPU operations.
 This memory can be accessed linearly, contrary to <code>GPUTexture</code> for which the actual memory layout of sequences of texels are unknown. Think of <code>GPUBuffers</code> as the result of <code>gpu_malloc()</code>.</p>
    <p><strong>CPU→GPU:</strong> When using WebGPU, applications need to transfer data from JavaScript to <code>GPUBuffer</code> very often and potentially in large quantities.
 This includes mesh data, drawing and computations parameters, ML model inputs, etc.
@@ -2712,7 +2711,7 @@ At each instant, only one of the two can access it, so no race is possible.</p>
 At this time, the GPU may still need to finish executing some operations that use the buffer, so the transfer doesn’t complete until all previously-enqueued GPU operations are finished.
 That’s why mapping a buffer is an asynchronous operation (we’ll discuss the other arguments below):</p>
 <pre class="highlight"><c- b>typedef</c-> [<c- g>EnforceRange</c->] <c- b>unsigned</c-> <c- b>long</c-> <c- g>GPUMapModeFlags</c->;
-<c- b>interface</c-> <c- g>GPUMapMode</c-> {
+<c- b>namespace</c-> <c- g>GPUMapMode</c-> {
     <c- b>const</c-> <c- n>GPUFlagsConstant</c-> <c- g>READ</c->  = 0x0001;
     <c- b>const</c-> <c- n>GPUFlagsConstant</c-> <c- g>WRITE</c-> = 0x0002;
 };
@@ -2852,8 +2851,8 @@ saveScreenshot<c- p>(</c->buffer<c- p>.</c->getMappedRange<c- p>());</c->
 buffer<c- p>.</c->unmap<c- p>();</c->
 </pre>
    </div>
-   <div class="example" id="example-f23f26f7">
-    <a class="self-link" href="#example-f23f26f7"></a> Updating a bunch of data on the GPU for a frame: 
+   <div class="example" id="example-eed014f1">
+    <a class="self-link" href="#example-eed014f1"></a> Updating a bunch of data on the GPU for a frame: 
 <pre class="highlight"><c- k>void</c-> frame<c- p>()</c-> <c- p>{</c->
     <c- c1>// Create a new buffer for our updates. In practice we would</c->
     <c- c1>// reuse buffers from frame to frame by re-mapping them.</c->
@@ -2879,13 +2878,13 @@ buffer<c- p>.</c->unmap<c- p>();</c->
 
         <c- a>const</c-> <c- p>{</c->uniformBuffer<c- p>,</c-> uniformOffset<c- p>}</c-> <c- o>=</c-> getUniformsForDraw<c- p>(</c->i<c- p>);</c->
         copyEncoder<c- p>.</c->copyBufferToBuffer<c- p>(</c->
-            stagingData<c- p>,</c-> i <c- o>*</c-> <c- mf>16</c-><c- p>,</c->
+            stagingBuffer<c- p>,</c-> i <c- o>*</c-> <c- mf>16</c-><c- p>,</c->
             uniformBuffer<c- p>,</c-> uniformOffset<c- p>,</c->
             <c- mf>16</c-><c- p>);</c->
 
         encodeDraw<c- p>(</c->renderPass<c- p>,</c-> <c- p>{</c->uniformBuffer<c- p>,</c-> uniformOffset<c- p>});</c->
     <c- p>}</c->
-    renderPass<c- p>.</c->endPass<c- p>();</c->
+    renderPass<c- p>.</c->end<c- p>();</c->
 
     <c- c1>// We are finished filling the staging buffer, unmap() it so</c->
     <c- c1>// we can submit commands that use it.</c->
@@ -2938,8 +2937,8 @@ See <a href="https://gpuweb.github.io/gpuweb/#security-timing">Timing attacks</a
       <p>Main: <code>B1.mapAsync()</code> → <strong>throws an exception</strong> (and doesn’t change the state of the buffer).</p>
      <li data-md>
       <p>Main: encodes some command that uses <code>B1</code>, like:</p>
-<pre class="language-js highlight">        encoder<c- p>.</c->copyBufferToTexture<c- p>(</c->B1<c- p>,</c-> T<c- p>);</c->
-        <c- a>const</c-> commandBuffer <c- o>=</c-> encoder<c- p>.</c->finish<c- p>();</c->
+<pre class="language-js highlight">encoder<c- p>.</c->copyBufferToTexture<c- p>(</c->B1<c- p>,</c-> T<c- p>);</c->
+<c- a>const</c-> commandBuffer <c- o>=</c-> encoder<c- p>.</c->finish<c- p>();</c->
 </pre>
       <p>→ succeeds, because this doesn’t depend on the buffer’s client side state.</p>
      <li data-md>
@@ -3111,7 +3110,7 @@ In the future, applications may be able to detect this, and receive events when 
 A typical bitflag definition looks like this:</p>
 <pre class="highlight"><c- b>typedef</c-> [<c- g>EnforceRange</c->] <c- b>unsigned</c-> <c- b>long</c-> <c- g>GPUColorWriteFlags</c->;
 [<c- g>Exposed</c->=<c- n>Window</c->]
-<c- b>interface</c-> <c- g>GPUColorWrite</c-> {
+<c- b>namespace</c-> <c- g>GPUColorWrite</c-> {
     <c- b>const</c-> <c- n>GPUFlagsConstant</c-> <c- g>RED</c->   = 0x1;
     <c- b>const</c-> <c- n>GPUFlagsConstant</c-> <c- g>GREEN</c-> = 0x2;
     <c- b>const</c-> <c- n>GPUFlagsConstant</c-> <c- g>BLUE</c->  = 0x4;
@@ -3129,10 +3128,8 @@ Additionally, <code>sequence&lt;enum type></code> has significant overhead, so w
 APIs that are expected to be "hot paths" (like command encoder methods), causing inconsistency with
 parts of the API that <em>do</em> use it.</p>
    <p>See also issue <a href="https://github.com/gpuweb/gpuweb/issues/747">#747</a> which mentions that strongly-typed bitflags in JavaScript would be useful.</p>
-   <p class="issue" id="issue-9b0c9b9d"><a class="self-link" href="#issue-9b0c9b9d"></a> This is a known misuse of <code>interface</code>; see issue.
-Update this section if that issue is resolved. <a href="https://github.com/gpuweb/gpuweb/issues/304">&lt;https://github.com/gpuweb/gpuweb/issues/304></a></p>
    <h2 class="heading settled" data-level="4" id="questionnaire"><span class="secno">4. </span><span class="content">Security and Privacy (self-review)</span><a class="self-link" href="#questionnaire"></a></h2>
-   <p>This section is the Security and Privacry self-review.
+   <p>This section is the Security and Privacy self-review.
 You can also see the <a href="https://gpuweb.github.io/gpuweb/#malicious-use">Malicious use considerations</a> section of the specification.</p>
    <h3 class="heading settled" data-level="4.1" id="questionnaire-1"><span class="secno">4.1. </span><span class="content">What information might this feature expose to Web sites or other parties, and for what purposes is that exposure necessary?</span><a class="self-link" href="#questionnaire-1"></a></h3>
    <p>The feature exposes information about the system’s GPUs (or lack thereof).</p>
@@ -3383,15 +3380,13 @@ However investigation in WebGL show that GPU timings can be used to leak from su
   </dl>
   <h2 class="no-num no-ref heading settled" id="issues-index"><span class="content">Issues Index</span><a class="self-link" href="#issues-index"></a></h2>
   <div style="counter-reset:issue">
-   <div class="issue"> Set up cross-linking into the WebGPU and WGSL specs. <a href="https://github.com/tabatkins/bikeshed/issues/2006">&lt;https://github.com/tabatkins/bikeshed/issues/2006></a><a href="#issue-30876714"> ↵ </a></div>
-   <div class="issue"> Complete the planned sections. <a href="https://github.com/gpuweb/gpuweb/issues/1321">&lt;https://github.com/gpuweb/gpuweb/issues/1321></a><a href="#issue-c681b067"> ↵ </a></div>
-   <div class="issue"> Finish this explainer (see <a href="https://github.com/gpuweb/gpuweb/blob/main/design/ErrorHandling.md#fatal-errors-requestadapter-requestdevice-and-devicelost">ErrorHandling.md</a>).<a href="#issue-a7ca2e8b"> ↵ </a></div>
-   <div class="issue"> Briefly explain passes?<a href="#issue-872b53a1"> ↵ </a></div>
-   <div class="issue"> Exact API still in flux as of this writing.<a href="#issue-829f95ec"> ↵ </a></div>
-   <div class="issue"> Update both names to whatever we settle on.<a href="#issue-eb515afc"> ↵ </a></div>
-   <div class="issue"> Describe how this is achieved for video element, VideoFrame, canvas element, and OffscreenCanvas.<a href="#issue-effdb8e6"> ↵ </a></div>
-   <div class="issue"> This is a known misuse of <code>interface</code>; see issue.
-Update this section if that issue is resolved. <a href="https://github.com/gpuweb/gpuweb/issues/304">&lt;https://github.com/gpuweb/gpuweb/issues/304></a><a href="#issue-9b0c9b9d"> ↵ </a></div>
+   <div class="issue"> Set up cross-linking into the WebGPU and WGSL specs. <a href="https://github.com/tabatkins/bikeshed/issues/2006">[Issue #tabatkins/bikeshed#2006]</a> <a class="issue-return" href="#issue-30876714" title="Jump to section">↵</a></div>
+   <div class="issue"> Complete the planned sections. <a href="https://github.com/gpuweb/gpuweb/issues/1321">[Issue #gpuweb/gpuweb#1321]</a> <a class="issue-return" href="#issue-c681b067" title="Jump to section">↵</a></div>
+   <div class="issue"> Finish this explainer (see <a href="https://github.com/gpuweb/gpuweb/blob/main/design/ErrorHandling.md#fatal-errors-requestadapter-requestdevice-and-devicelost">ErrorHandling.md</a>). <a class="issue-return" href="#issue-a7ca2e8b" title="Jump to section">↵</a></div>
+   <div class="issue"> Briefly explain passes? <a class="issue-return" href="#issue-872b53a1" title="Jump to section">↵</a></div>
+   <div class="issue"> Exact API still in flux as of this writing. <a class="issue-return" href="#issue-829f95ec" title="Jump to section">↵</a></div>
+   <div class="issue"> Update both names to whatever we settle on. <a class="issue-return" href="#issue-eb515afc" title="Jump to section">↵</a></div>
+   <div class="issue"> Describe how this is achieved for video element, VideoFrame, canvas element, and OffscreenCanvas. <a class="issue-return" href="#issue-effdb8e6" title="Jump to section">↵</a></div>
   </div>
 <script>/* script-dfn-panel */
 
